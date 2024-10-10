@@ -1,0 +1,81 @@
+version: 2
+
+models:
+  - name: prep_flight_data
+    access: public
+    description: "Flight data with added flight number for joining with survey data."
+    columns:
+      - name: Call_Sign
+        description: "Unique identifier for the flight."
+        tests:
+          - not_null
+      - name: Carrier_Group
+        description: "Name of the airline carrier group."
+        tests:
+          - not_null
+      - name: Destination_Airport
+        description: "IATA code of the destination airport."
+        tests:
+          - not_null
+      - name: Event_Time_UTC
+        description: "UTC timestamp of the flight event."
+        tests:
+          - not_null
+      - name: First_Fix
+        description: "First navigation fix for the flight."
+      - name: Flight_Origination_Date
+        description: "Date of flight origination."
+        tests:
+          - not_null
+      - name: Gate
+        description: "Assigned gate for the flight."
+      - name: Gate_Assigned_Aerobahn
+        description: "Gate assigned by Aerobahn system."
+      - name: International_or_Domestic_Indicator
+        description: "Indicator for international or domestic flight."
+        tests:
+          - accepted_values:
+              values: ['I', 'D']
+      - name: Model
+        description: "Aircraft model."
+        tests:
+          - not_null
+      - name: Operation
+        description: "Type of operation (Arrival or Departure)."
+        tests:
+          - accepted_values:
+              values: ['Arrival', 'Departure']
+      - name: Origination_Airport
+        description: "IATA code of the origination airport."
+        tests:
+          - not_null
+      - name: Registration
+        description: "Aircraft registration number."
+        tests:
+          - not_null
+      - name: Runway
+        description: "Runway used for takeoff or landing."
+      - name: Runway_Assigned_Aerobahn
+        description: "Runway assigned by Aerobahn system."
+      - name: Scheduled_In_Block_Time_Aerobahn_UTC
+        description: "Scheduled in-block time in UTC according to Aerobahn."
+      - name: Scheduled_Off_Block_Time_Aerobahn_UTC
+        description: "Scheduled off-block time in UTC according to Aerobahn."
+      - name: Ship_Number
+        description: "Internal ship number assigned by the airline."
+      - name: Workflow_Duration
+        description: "Duration of the workflow in ISO 8601 duration format."
+      - name: Workflow_Enter_Time_UTC
+        description: "UTC timestamp when the workflow was entered."
+      - name: Workflow_Exit_Time_UTC
+        description: "UTC timestamp when the workflow was exited."
+      - name: Workflow_Type
+        description: "Type of workflow (e.g., Arrival, Departure)."
+        tests:
+          - accepted_values:
+              values: ['Arrival', 'Departure']
+      - name: flight_number
+        description: "Generated flight number for joining with survey data."
+        tests:
+          - not_null
+          - unique

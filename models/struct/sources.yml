@@ -1,0 +1,8 @@
+version: 2
+
+sources:
+  - name: flight_data
+    database: hive_metastore  
+    schema: dbt_fops_cthornburg
+    tables:
+      - name: flight_data
